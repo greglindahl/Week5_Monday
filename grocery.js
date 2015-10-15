@@ -17,27 +17,53 @@ for(i = 0; i < groceries.length; i++) {
 
 //2. Give 'needed' items a background-color of your choosing. Do the same for 'complete' items.
 //   Choose any text color you desire.
-$( "li[data-status*='needed']" ).css('background-color', '#FFB00F');
+$('li[data-status*="needed"]').css('background-color', '#FFB00F');
 $('li[data-status*="complete"]').css('background-color', 'green');
 
 //3. Display the item quantity next to it's name. (  i.e. Tomatoes (5)  )
-for(i = 0; i < groceries.length; i++) {
-  $("#list").append("'<p>' + .listItem.quantity + ' ' + '</p>'");
-}
-// $("'<p>' + .listItem.quantity + ' ' + '</p>'").appendTo(".listItem");
+$('#list li').each(function() {
+     var qty = $(this).attr('data-quantity');
+     $(this).append('<span class="quantity">' + qty + '</span>');
+});
+
 
 //4. Display total quantity and cost on the page.
-function totalCost(cost) {
-	for (i = 0; i < groceries[i].price.length; i++) {
-		var groceriesPrice = parseFloat(groceries[0].price) + parseFloat(groceries[1].price) + parseFloat(groceries[2].price) + parseFloat(groceries[3].price) + parseFloat(groceries[4].price);
-		var groceriesCost = groceriesPrice.toFixed(2);
-	}
+var totalQuantity = 0;
+var totalPrice = 0;
+    
+for (i=0; i<groceries.length; i++) {
+  totalQuantity += groceries[i].quantity;
+  totalPrice += parseFloat(groceries[i].price);
 }
+$('numItems').append('<span class="numItems">' + totalQuantity + '</span>');
+$('totalCost').append('<span class="totalCost">' + totalPrice + '</span>');
+
 
 //5. When an item is hovered over, it's background should darken slightly. This can be done through CSS but use
 //   JS for practice.
+$('li[data-status*="complete"]').mouseenter(function() {
+    $(this).css('background-color', '#00611C');
+  })
+  .mouseleave(function() {
+    $(this).css('background-color', 'green');
+});
+
+$('li[data-status*="needed"]').mouseenter(function() {
+    $(this).css('background-color', '#D98719');
+  })
+  .mouseleave(function() {
+    $(this).css('background-color', '#FFB00F');
+});
 
 //6. When and item is double-clicked, give it the class 'selected' and have it's background remain slightly darkened.
+$('li[data-status*="complete"]').dblclick(function() {
+    alert('double cliked activated');
+    $(this).addClass('completed-selected');
+});
+
+$('li[data-status*="needed"]').dblclick(function() {
+    $(this).toggleClass('needed-selected');
+});
 
 //7. When 'Remove Item' is clicked, delete the item from the list. Have the item .fadeOut()
 

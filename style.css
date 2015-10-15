@@ -86,3 +86,11 @@ li {
   margin-right: auto;
   margin-top: 20px;
 }
+
+.needed-selected {
+  background-color: #D98719;
+}
+
+.completed-selected {
+  background-color: #00611C;
+}
