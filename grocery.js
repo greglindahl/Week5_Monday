@@ -66,8 +66,24 @@ $('li[data-status*="needed"]').dblclick(function() {
 });
 
 //7. When 'Remove Item' is clicked, delete the item from the list. Have the item .fadeOut()
+//delete list items
+  $('#list').on('click', '.listItem', function(e){e.preventDefault(); $(this).parent().remove()});
 
 //8. When 'Add item' is clicked, a new item should be added to the list. 'Status' should default as 'needed'.
+//add list items
+  $('#add').click(function(){
+    var txtbox = document.getElementById('addItem');
+    var txtval = txtbox.value;
+    event.preventDefault();
+
+    if(!$.trim($('#addItem').val())) {
+      alert('Please enter text to add to the list');
+    } else {
+      $('<li class="listItem"></li>').appendTo('#list').html('<h2>' + txtval + '</h2>');
+
+    document.getElementById('addItem').value = '';
+    };
+  });
 
 //9. ** Have total quantity and cost update when items are added or removed!
 
