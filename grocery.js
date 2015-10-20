@@ -35,8 +35,8 @@ for (i=0; i<groceries.length; i++) {
   totalQuantity += groceries[i].quantity;
   totalPrice += parseFloat(groceries[i].price);
 }
-$('numItems').append('<span class="numItems">' + totalQuantity + '</span>');
-$('totalCost').append('<span class="totalCost">' + totalPrice + '</span>');
+$('.numItems').append('<span class="numItems">' + totalQuantity + '</span>');
+$('.totalCost').append('<span class="totalCost">' + totalPrice.toFixed(2) + '</span>');
 
 
 //5. When an item is hovered over, it's background should darken slightly. This can be done through CSS but use
